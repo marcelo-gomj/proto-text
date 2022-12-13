@@ -1,6 +1,8 @@
 html,
 body {
-  font-family: "Heebo";
+  /* font-family: "Heebo"; */
+  font-family: "Helvetica", "Heebo";
+
 }
 
 a {
@@ -21,10 +23,15 @@ a {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  text-rendering: optimizeLegibility;
 }
 
 ul{
   list-style: none;
+}
+
+main{
+  padding-top: 3.3rem;
 }
 
 @media (prefers-color-scheme: dark) {

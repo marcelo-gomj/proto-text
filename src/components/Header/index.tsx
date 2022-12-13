@@ -31,8 +31,13 @@ export function Header(){
          </nav>
 
          <div className={header["login"]}>
-            <User />
-            Usuário
+            <a 
+               className={header["login-button"]}
+               href="/login"
+            >
+               <User />
+               Entrar
+            </a>
          </div>
      </header>
    )
