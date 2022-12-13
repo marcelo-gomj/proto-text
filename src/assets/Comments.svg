@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Comments</title>
+    <g id="Comments" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Container" x="0" y="0" width="24" height="24"></rect>
+        <path d="M10,4 L14,4 C17.3137085,4 20,6.6862915 20,10 L20,14 C20,17.3137085 17.3137085,20 14,20 L4,20 L4,20 L4,10 C4,6.6862915 6.6862915,4 10,4 Z" id="shape-1" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-dasharray="0,0"></path>
+        <line x1="9" y1="14" x2="12" y2="14" id="shape-2" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-dasharray="0,0"></line>
+        <line x1="9" y1="10" x2="15" y2="10" id="shape-3" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-dasharray="0,0"></line>
+    </g>
+</svg>
