@@ -32,6 +32,8 @@ ul{
 
 main{
   padding-top: 3.3rem;
+  max-width: 1366px;
+  margin: 0 auto;
 }
 
 @media (prefers-color-scheme: dark) {

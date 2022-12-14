@@ -1,0 +1,39 @@
+.container-signup{
+   width: 40%;
+   margin: 0 auto;
+}
+
+.container-signup h3{
+   font-size: 1.3rem;
+   font-weight: 500;
+   margin: 3rem 0;
+   text-align: center;
+}
+
+
+.container-signup form{
+   display: flex;
+   gap: 1rem;
+   flex-direction: column;
+}
+
+.container-signup label{
+   display: flex;
+   gap: 0.4rem;
+   align-items: center;
+   flex-direction: column;
+}
+
+.container-signup input{
+   background: none;
+   border: none;
+   background: rgba(20, 20, 20);
+   /* border-bottom: 2px solid white; */
+   padding: 0.5rem;
+   width: 100%;
+}
+
+.submit-button{
+   padding: 2rem;
+   border-bottom: none!important;
+}

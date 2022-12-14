@@ -1,10 +1,11 @@
 import Link from "next/link";
 import header from "./header.module.css";
 
+import { LoginController } from './LoginController';
+
 import SearchIcon from "../../assets/search.svg";
 import Commment from "../../assets/Comments.svg";
 import Info from "../../assets/Info.svg";
-import User from "../../assets/User.svg";
 
 export function Header(){
    return (
@@ -13,10 +14,12 @@ export function Header(){
 
          <nav>
             <ul className={header["menu-main"]}>
-               <li>
-                  <Commment />
-                  <Link href="/">Feed</Link>
-               </li>
+               <Link href="/">
+                  <li>
+                     <Commment />
+                     Feed
+                  </li>
+               </Link>
 
                <li>
                   <SearchIcon />
@@ -31,13 +34,7 @@ export function Header(){
          </nav>
 
          <div className={header["login"]}>
-            <a 
-               className={header["login-button"]}
-               href="/login"
-            >
-               <User />
-               Entrar
-            </a>
+            <LoginController />
          </div>
      </header>
    )
