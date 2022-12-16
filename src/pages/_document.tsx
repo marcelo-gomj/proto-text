@@ -8,7 +8,7 @@ export default class ProtoText extends Document {
             <Head>
                <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
                <meta charSet="utf-8" />
-               <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+               <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
             </Head>
             <body>
                <Main />

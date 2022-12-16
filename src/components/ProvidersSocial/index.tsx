@@ -1,5 +1,5 @@
 import { supabase } from '../../services/supabase';
-import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
+import providers from './providers.module.css';
 
 export function ProviderSocial(){
 
@@ -8,18 +8,30 @@ export function ProviderSocial(){
          provider
       })
 
-      console.log(data)
+      // if(data){
+      //    localStorage.setItem('provider', JSON.stringify(data))
+      // }
    }
 
-
    return (
-      <Auth
-         redirectTo="http://localhost:3000/"
-         appearance={{ theme: ThemeSupa }}
-         supabaseClient={supabase}
-         providers={['google', 'github']}
-         socialLayout="horizontal"
-      />
-      )
+      <div className={providers["container"]}>
+         <p className={providers["title-providers"]}>Cadastrar com : </p>
+         
+         <div className={providers["controllers"]}>
+            <button 
+               className="google-provider"
+               onClick={() => setProviderSocial('google')}
+            >
+               Google
+            </button>      
+            <button 
+               className="google-provider"
+               onClick={() => setProviderSocial('github')}
+            >
+               Github
+            </button>      
+         </div>
+      </div>
+   )
    
 } 

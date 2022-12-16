@@ -4,7 +4,7 @@ import header from "./header.module.css";
 import { LoginController } from './LoginController';
 
 import SearchIcon from "../../assets/search.svg";
-import Commment from "../../assets/Comments.svg";
+import Comment from "../../assets/Comments.svg";
 import Info from "../../assets/Info.svg";
 
 export function Header(){
@@ -16,7 +16,7 @@ export function Header(){
             <ul className={header["menu-main"]}>
                <Link href="/">
                   <li>
-                     <Commment />
+                     <Comment />
                      Feed
                   </li>
                </Link>
@@ -32,7 +32,6 @@ export function Header(){
                </li>
             </ul>
          </nav>
-
          <div className={header["login"]}>
             <LoginController />
          </div>

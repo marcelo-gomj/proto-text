@@ -8,8 +8,7 @@ export default function Layout({ children } : LayoutProp) {
    return (
       <>
          <Header />
-         { children }      
+         { children }    
       </>
-
    )
 }

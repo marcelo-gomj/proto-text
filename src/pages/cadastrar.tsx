@@ -4,11 +4,15 @@ import { ProviderSocial } from "../components/ProvidersSocial";
 import cadastrar from '../styles/cadastrar.module.css';
 
 export default function CadastrarPage(){
+
    return (
       <>
          <Head>
             <title>Cadastre seu perfil</title>
-            <meta name="description" content="Cadastre o seu perfil para compartilhar seus posts" />
+            <meta 
+               name="description" 
+               content="Cadastre o seu perfil para compartilhar seus posts" 
+            />
          </Head>
 
          <main>
