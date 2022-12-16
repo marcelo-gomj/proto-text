@@ -5,7 +5,7 @@ import Image from 'next/image';
 import User from '../../assets/User.svg';
 import header from './header.module.css';
 import { SessionContext } from '../../hooks/useSession';
-
+undefined
 export function LoginController() {
    const session = useContext(SessionContext);
 
@@ -42,4 +42,6 @@ export function LoginController() {
          </div>
       )
    }
+
+   return <></>
 }
