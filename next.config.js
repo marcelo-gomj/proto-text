@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
 
   images : {
-    domains: ["avatars.githubusercontent.com"]
+    domains: ["avatars.githubusercontent.com", "lh3.googleusercontent.com"]
   },
   webpack(config) {
     config.module.rules.push({

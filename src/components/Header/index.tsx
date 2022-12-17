@@ -7,34 +7,36 @@ import SearchIcon from "../../assets/search.svg";
 import Comment from "../../assets/Comments.svg";
 import Info from "../../assets/Info.svg";
 
-export function Header(){
+export function Header() {
    return (
-     <header className={header["container"]}>
-         <div className={header["header-logo"]}>ProtoText</div>
+      <header className={header["container"]}>
+         <div className={header['wrapper-header']}>
+            <div className={header["header-logo"]}>ProtoText</div>
 
-         <nav>
-            <ul className={header["menu-main"]}>
-               <Link href="/">
+            <nav>
+               <ul className={header["menu-main"]}>
+                  <Link href="/">
+                     <li>
+                        <Comment />
+                        Feed
+                     </li>
+                  </Link>
+
                   <li>
-                     <Comment />
-                     Feed
+                     <SearchIcon />
+                     Pesquisar
                   </li>
-               </Link>
 
-               <li>
-                  <SearchIcon />
-                  Pesquisar
-               </li>
-
-               <li>
-                  <Info />
-                  <Link href="/sobre">Sobre</Link>
-               </li>
-            </ul>
-         </nav>
-         <div className={header["login"]}>
-            <LoginController />
+                  <li>
+                     <Info />
+                     <Link href="/sobre">Sobre</Link>
+                  </li>
+               </ul>
+            </nav>
+            <div className={header["login-controllers"]}>
+               <LoginController />
+            </div>
          </div>
-     </header>
+      </header>
    )
 }
