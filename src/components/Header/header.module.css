@@ -8,33 +8,27 @@
 .wrapper-header{
    display: flex;
    position: relative;
-   width: 100%;
-   justify-content: space-between;
    align-items: center;
+   justify-content: center;
    
-   height: 3.3rem;
    background: black;
+   
+   width: 100%;
+   height: 3.3rem;
    max-width: 1366px;
    padding: 0 2rem;
-   z-index: 999;
-}
-
-.header-logo, .login {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   width: 20%;
-   height: 100%;
 }
 
 .header-logo{
-   font-size: 1.5rem;
-   font-weight: bold;
+   position: absolute;
+   left: 2rem;
+   font-size: 1.3rem;
+   padding: 0 2rem;
+   font-weight: normal;
 }
 
 .container nav{
    height: 100%;
-   margin-bottom: -1px;
 }
 
 .menu-main{
@@ -47,13 +41,15 @@
    display: flex;
    align-items: center;
 
+   font-weight: normal;
+   font-size: .95rem;
+
    gap: 1rem;
    padding: 0 1rem;
-   opacity: .8;
+   opacity: .75;
    height: 100%;
 
    cursor: pointer;
-   transition: border-bottom-color 0.8s ease;
 }
 
 .menu-main li:hover{
@@ -67,24 +63,14 @@
    stroke-width: 0;
 }
 
-.header-controllers{
-   display: flex;
-   align-items: center;
-   height: 100%;
-   gap: 2rem;
-}
-
-.header-controllers a{
-   opacity: 0.8;
-   transition: opacity 0.5s ease;
-}
-
-.header-controllers a:hover{
-   opacity: 1;
-}
-
 .login-controllers{
+   display: flex;
+   justify-content: center;
+   position: absolute;
    height: 100%;
+   right: 1rem;
+   width: 14rem;
+
 }
 
 .login-button{
@@ -103,11 +89,28 @@
    height: 70%;
 }
 
+.header-controllers{
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+
+   height: 100%;
+   z-index: 900;
+}
+
+.header-controllers a{
+   opacity: 0.8;
+   transition: opacity 0.5s ease;
+}
+
+.header-controllers a:hover{
+   opacity: 1;
+}
+
 .profile-container{
    height: 100%;
    background: black;
    transition: border-color .3s ease;
-   z-index: 999;
 }
 
 .profile-container:hover .profile-button{
@@ -138,8 +141,8 @@
 
 .profile-cover{
    position: relative;
-   width: 2rem;
-   height: 2rem;
+   width: 1.8rem;
+   height: 1.8rem;
 }
 
 .profile-cover img{
@@ -153,16 +156,18 @@
 .profile-options{
    display: none;
    position: absolute;
-   right: 1rem;
-   background: rgba(255, 255, 255, 0.05);
+   right: 0;
+   background: rgba(10, 10, 10);
    top: 120%;
    padding: 0 4rem;
    width: 14rem;
    flex-direction: column;
    text-align: center;
    border-radius: 5px;
-   border: 2px solid rgba(255, 255, 255, 0.7);
+   border: 2px solid rgba(255, 255, 255, 0.1);
    padding: .5rem 0;
+
+   z-index: 900;
 }
 
 @keyframes ActiveMenuOptions {
@@ -175,17 +180,54 @@
 
 .options-active{
    display: flex;
-   animation: ActiveMenuOptions .6s ease;
+   animation: ActiveMenuOptions .3s ease;
 }
 
 .profile-options li{
    display: flex;
    align-items: center;
    gap: 1.5rem;
-   padding: 0.8rem 1rem;
+   padding: 0.6rem 1rem;
    cursor: pointer;
 }
 
 .profile-options li:hover{
-   background: rgb(255, 255, 255, .05);
+   background-color: rgb(255, 255, 255, .05);
+}
+
+.profile-loading{
+   position: relative;
+   height: 100%;
+   padding: 1rem;
+   width: 11rem;
+}
+
+.loading{
+   display: block;
+   position: relative;
+   height: 100%;
+   width: 100%;
+   background:  rgba(255, 255, 255, 0.1);
+   border-radius: 5px;
+   overflow: hidden;
+}
+
+.loading:after{
+   content: "";
+   position: absolute;
+   background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.1), transparent);
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 8rem;
+
+   animation: skeletonProfile 1s ease infinite;
+}
+
+@keyframes skeletonProfile {
+   0% {
+      left: -100%;
+   } 100% {
+      left: 100%;
+   }
 }

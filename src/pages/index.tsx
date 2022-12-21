@@ -1,21 +1,24 @@
 import Head from 'next/head';
-import { GetServerSidePropsContext } from 'next';
-import { parseCookies } from 'nookies';
 
-// import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { supabase } from '../services/supabase';
 
 import AddText from '../components/AddText';
 import home from '../styles/Home.module.css';
+import { FeedList } from '../components/FeedList';
 
-interface HomeProps {
-  user: {
-    name : string, 
-    avatar : string
-  }
+interface PostProps {
+  email: string;
+  id: string;
+  created_at: string;
+  is_public: boolean;
+  content: string;
 }
 
-export default function Home({ user }: HomeProps) {
+interface HomeProps {
+  listFeed: PostProps[]
+}
+
+export default function Home({ listFeed }: HomeProps) {
   return (
     <>
       <Head>
@@ -25,38 +28,28 @@ export default function Home({ user }: HomeProps) {
 
       <main className={home["container"]}>
         <AddText />
+
+        <FeedList
+          list={listFeed}
+        />
       </main>
     </>
   )
 }
 
-export async function getServerSideProps(ctx : GetServerSidePropsContext) {
-  // const cookies = parseCookies(ctx);
+export async function getServerSideProps() {
+  const { data, error } = await supabase
+    .from('posts')
+    .select()
+    .eq('is_public', true)
+    .order('created_at', { ascending: false })
+    .limit(5)
 
-  // console.log('supabase :', await supabase.auth.setSession(
-  //   {
-  //     refresh_token: cookies['my-refresh-token'],
-  //     access_token: cookies['my-access-token'],
-  //   }
-  // ))
-
-  // supabase.auth.
-  // const cookies = parseCookies(ctx);
-
-  // const { data } = await supabase.auth.setSession({
-  //   refresh_token: cookies['my-refresh-token'],
-  //   access_token: cookies['my-access-token'],
-  // })
-
-  // const user = {
-  //   name : data.user?.user_metadata.name, 
-  //   avatar : data.user?.user_metadata.avatar_url
-  // }
+  const listFeed = data && !error ? data : [];
 
   return {
     props: {
-      // user
+      listFeed,
     }
   }
-
 }

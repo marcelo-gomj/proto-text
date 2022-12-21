@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { supabase } from '../../services/supabase';
 import { SessionContext } from '../../hooks/useSession';
@@ -14,7 +14,6 @@ import header from './header.module.css';
 
 export function LoginController() {
    const [ProfileOptions, setProfileOptions] = useState(false);
-   const ref = useRef<HTMLInputElement>(null)
    const session = useContext(SessionContext);
 
    async function handleSingOutUser() {
@@ -25,21 +24,8 @@ export function LoginController() {
       setProfileOptions(true)
    }
 
-   // useEffect(() => {
-   //    function handleClickOutside(event : any) {
-   //      if (ref.current && !ref.current.contains(event.target)) {
-   //          setProfileOptions(false)
-   //       }
-   //    }
-
-   //    document.addEventListener("mousedown", handleClickOutside);
-   //    return () => {
-   //      document.removeEventListener("mousedown", handleClickOutside);
-   //    };
-   //  }, [ref]);
-
-   if(session === null){
-      return (
+   return (
+      session === null ? (
          <div className={header["header-controllers"]}>
             <Link
                href="/entrar"
@@ -48,41 +34,42 @@ export function LoginController() {
                <User />
                Entrar
             </Link>
-   
+
             <Link
                href="/cadastrar"
                className={header["signup-button"]}
             >Cadastrar</Link>
          </div>
-      )
-   }else if(session){
-      return (
+      ) :
+
+      (session ? (
          <div
             className={header["profile-container"]}
-            onMouseOver={() => handleClickProfile() }
+            onMouseOver={() => handleClickProfile()}
             onMouseOut={() => setProfileOptions(false)}
-            // ref={ref}
          >
             <div
                className={header["profile-button"]}
+               tabIndex={0}
             >
                <div
                   className={header["profile-cover"]}
                >
-                  <Image 
+                  <Image
                      fill
-                     src={session.user.user_metadata.avatar_url} 
-                     alt={session.user.user_metadata.name + ' perfil'}            
+                     src={session.user.user_metadata.avatar_url}
+                     alt={session.user.user_metadata.name + ' perfil'}
                   />
                </div>
 
-               <span>{session.user.user_metadata.name}</span>
+               <span>Meu perfil</span>
             </div>
-            
+
             <div className={header["options-divisor"]}></div>
-            
-            <ul 
-               className={`${header["profile-options"]} ${ProfileOptions && header["options-active"]}`}
+
+            <ul
+               className={`${header["profile-options"]} ${ ProfileOptions && header["options-active"] }`}
+               tabIndex={0}
             >
                <li>
                   <UserProfile />
@@ -100,10 +87,12 @@ export function LoginController() {
                </li>
             </ul>
          </div>
-      )
-   }
-
-   return <div
-      style={{ width: '100%', height: '100%' }}
-   ></div>
+      ) : (
+         <div
+            className={header["profile-loading"]}
+         >
+            <div className={header["loading"]}></div>
+         </div>
+      ))
+   )
 }

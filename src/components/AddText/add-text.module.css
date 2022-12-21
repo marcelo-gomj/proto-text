@@ -15,7 +15,7 @@
    margin: 0.4rem 0;
 }
 
-.text-area-container{
+.content-input{
    background: black;
    border-radius: 8px;
    font-size: 1.1rem;
@@ -24,36 +24,108 @@
    outline: 2px solid rgba(255, 255, 255, 0.3);
    resize: none;
    margin: 0.8rem 0;
-   padding: .5rem 1rem;
+   padding: .8rem 1rem;
    line-height: 1.3rem;
 
    transition: all 0.5s ease;
 }
 
-.text-area-container:focus{
+.content-input:focus{
    border-color: white;
    outline-width: 1px;
 }
 
-.send-button{
-   width: 30%;
-   background: none;
-   font-size: 1.05rem;
-   font-weight: 400;
-   margin: .4rem 0;
-   padding: .5rem .6rem;
-   border-radius: 6px;
-   border: 2px solid transparent;
-   color: rgba(255, 255, 255, 0.8);
-   background: rgba(255, 255, 255, 0.05);
-   box-shadow: rgba(255, 255, 255, 0.2);
-   border: 2px solid transparent;
-   cursor: pointer;
-
-   transition: all 0.5s ease;
+.sucess-message, .error-maxLength {
+   margin: 0.2rem 0 .4rem;
+}
+.error-maxLength{
+   color: rgba(255, 100, 100);
 }
 
-.send-button:hover{
+.sucess-message{
+   color: rgba(100, 255, 100);
+}
+
+.sucess-message:hover{
+   text-decoration: underline;
+   cursor: pointer;
+}
+
+.error-maxLength span{
+   color: white;
+}
+
+.post-controllers{
+   display: flex;
+   position: relative;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.send-post{
+   background: none;
+   font-size: .95rem;
+   border: 2px solid rgba(255, 255, 255, 0.5);
+   padding: .5rem 3rem;
+   border-radius: 25px;
+   color: rgba(255, 255, 255, 0.8);
+
+   cursor: pointer;
+}
+
+.send-post:hover{
    color: white;
    border-color: white ;
+}
+
+.privacy-container{
+   display: inline-block;
+   text-align: center;
+   position: relative;
+   height: 100%;
+   width: 13rem;
+}
+
+.privacy-button{
+   height: 100%;
+}
+
+.privacy-container li {
+   display: flex;
+   justify-content: center;
+   gap: 1rem;
+   width: 100%;
+   font-size: 0.94rem;
+   padding: 0.8rem 0rem;
+   cursor: pointer;
+}
+
+.privacity-button{
+   border-radius: 6px;
+   z-index: -1;
+}
+
+.privacy-options{
+   display: none;
+   position: absolute;
+   background: black;
+   border: 2px solid rgba(255, 255, 255, 0.2);
+   border-radius: 6px;
+   width: 100%;
+   top: 0;
+   z-index: 99;
+}
+
+.privacy-options li{
+   border: 2px solid transparent;
+   justify-items: flex-start;
+}
+
+.privacy-options li:active{
+   border-radius: 6px;
+   border-color: rgba(255, 255, 255);
+}
+
+.options-active{
+   display: block;
 }

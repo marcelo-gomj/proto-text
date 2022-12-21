@@ -4,12 +4,17 @@ import type { AppProps } from 'next/app';
 import Router from 'next/router';
 
 import { useEffect } from 'react';
-import { UseSession } from '../hooks/useSession'
+import { UseSession } from '../hooks/useSession';
 
 import Nprogress from 'nprogress';
-import "nprogress/nprogress.css";
+import "../styles/nprogress.css";
+
+Nprogress.configure({
+  showSpinner : false,
+});
 
 export default function App({ Component, pageProps }: AppProps) {
+  
   useEffect(() => {
     const handleRouteStart = () => Nprogress.start();
     const handleRouteDone = () => Nprogress.done();

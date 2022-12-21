@@ -1,0 +1,26 @@
+.post{
+   display: flex;
+   flex-direction: column;
+   border: 1.5px solid rgba(255, 255, 255, 0.1);
+   margin: 0.8rem 0;
+   padding:1.5rem;
+   border-radius: 8px;
+
+   cursor: pointer;
+   transition: background 0.2s ease;
+}
+
+.post:hover{
+   background-color: rgba(255, 255, 255, 0.06);
+}
+
+.post-header{
+   font-weight: 400;
+   font-size: 1rem;
+   color: rgba(255, 255, 255, 0.6);
+   margin-bottom: 1rem;
+}
+
+.post p{
+   word-wrap: break-word;
+}
