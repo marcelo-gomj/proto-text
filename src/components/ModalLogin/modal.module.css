@@ -1,0 +1,58 @@
+.container{
+   display: flex;
+   justify-content: center;
+   position: fixed;
+   align-items: center;
+   top: 0;
+
+   background: rgba(0, 0, 0, 0.6);
+   padding: 4rem 0 0;
+
+   width: 100%;
+   height: 100%;
+   z-index: 999;
+}
+
+.modal-content{
+   background-color: black;
+   width: 50%;
+   padding: 3rem 2rem;
+   border-radius: 10px;
+   border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.modal-header{
+   text-align: center;
+}
+
+.controllers{
+   display: flex;
+   gap: 1.4rem;
+   margin: 1.4rem 0;
+   padding: 0 2.5rem;
+   flex-direction: column;
+}
+
+.controllers button{
+   display: flex;
+   gap: 1rem;
+   justify-content: center;
+   align-items: center;
+   background: none;
+   border-radius: 10px;
+   font-weight : bold;
+   font-size: 1rem;
+   border: 2px solid rgba(255, 255, 255, 0.3);
+
+   padding: 0.4rem 4rem;
+   cursor: pointer;
+   transition: border-color .3s ease;
+}
+
+.controllers svg{
+   width: 1.5rem;
+}
+
+.controllers button:hover{
+   border-color: white;
+}

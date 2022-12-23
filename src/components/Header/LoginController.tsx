@@ -24,25 +24,30 @@ export function LoginController() {
       setProfileOptions(true)
    }
 
+   function handleModal() {
+      console.log('PASSOU NO HANDLER');
+      session?.openModal()
+   };
+
    return (
-      session === null ? (
+      session && session.user === null ? (
          <div className={header["header-controllers"]}>
-            <Link
-               href="/entrar"
+            <div
+               onClick={handleModal}
                className={header["login-button"]}
             >
                <User />
                Entrar
-            </Link>
+            </div>
 
-            <Link
-               href="/cadastrar"
+            <div
+               onClick={handleModal}
                className={header["signup-button"]}
-            >Cadastrar</Link>
+            >Cadastrar</div>
          </div>
       ) :
 
-      (session ? (
+      (session?.user ? (
          <div
             className={header["profile-container"]}
             onMouseOver={() => handleClickProfile()}
@@ -57,8 +62,8 @@ export function LoginController() {
                >
                   <Image
                      fill
-                     src={session.user.user_metadata.avatar_url}
-                     alt={session.user.user_metadata.name + ' perfil'}
+                     src={session.user.user.user_metadata.avatar_url}
+                     alt={session.user.user.user_metadata.name + ' perfil'}
                   />
                </div>
 

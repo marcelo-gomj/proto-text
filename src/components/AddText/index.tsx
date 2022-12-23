@@ -1,21 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import Router from 'next/router';
 
 import { supabase } from '../../services/supabase';
 import { useForm } from 'react-hook-form';
 import { Post } from '../../types/models';
 import { addPost } from '../../utils/database';
+import { SessionContext } from '../../hooks/useSession';
 
 import add from './add-text.module.css';
 import PrivateIcon from '../../assets/Private.svg';
 import PublicIcon from '../../assets/Public.svg';
 import Link from 'next/link';
 
+
 interface PostInputs {
    content: string;
 }
 
 export default function AddText() {
+   const session = useContext(SessionContext);
    const [isBoxActive, setIsBoxActive] = useState(false);
    const [isOpenModes, setIsOpenModes] = useState(false)
    const [isPublic, setIsPublic] = useState(true);
@@ -31,7 +34,7 @@ export default function AddText() {
       resetField,
       watch,
       formState,
-   } = useForm<PostInputs>({
+   } = useForm <PostInputs> ({
       defaultValues: {
          content: '',
       }
@@ -41,24 +44,24 @@ export default function AddText() {
 
 
    async function handleDataSubmit(inputValues: PostInputs) {
-      const { data, error } = await supabase.auth.getSession();
-
-      const { session } = data;
-
-      if (!session) {
-         Router.push('/cadastrar');
-         return;
-      }
-
-      const res = await addPost({
-         content: inputValues.content,
-         email: session.user.email || '',
-         is_public: isPublic,
-      })
-
-      if (res) {
-         resetField("content");
-         setPostSended(res)
+      console.log(session)
+      if(session){
+         if (!session.user) {
+            console.log('PASSOU AQUI');
+            session.openModal()
+            return;
+         }
+   
+         const res = await addPost({
+            content: inputValues.content,
+            email:  session.user.user.email || '',
+            is_public: isPublic,
+         })
+   
+         if (res) {
+            resetField("content");
+            setPostSended(res)
+         }
       }
    }
 
@@ -179,8 +182,4 @@ export default function AddText() {
          </form>
       </section>
    )
-}
-
-function setIsPosted(res: Post) {
-   throw new Error('Function not implemented.');
 }

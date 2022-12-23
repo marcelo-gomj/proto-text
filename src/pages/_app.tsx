@@ -10,19 +10,19 @@ import Nprogress from 'nprogress';
 import "../styles/nprogress.css";
 
 Nprogress.configure({
-  showSpinner : false,
+  showSpinner: false,
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  
+
   useEffect(() => {
     const handleRouteStart = () => Nprogress.start();
     const handleRouteDone = () => Nprogress.done();
- 
+
     Router.events.on("routeChangeStart", handleRouteStart);
     Router.events.on("routeChangeComplete", handleRouteDone);
     Router.events.on("routeChangeError", handleRouteDone);
- 
+
     return () => {
       Router.events.off("routeChangeStart", handleRouteStart);
       Router.events.off("routeChangeComplete", handleRouteDone);
