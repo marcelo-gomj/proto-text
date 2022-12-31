@@ -24,3 +24,10 @@
 .post p{
    word-wrap: break-word;
 }
+
+.post-react{
+   display: flex;
+   justify-content: space-around;
+   width: 100%;
+   margin-top: 1.5rem;
+}

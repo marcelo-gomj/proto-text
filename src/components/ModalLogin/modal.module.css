@@ -1,24 +1,48 @@
 .container{
    display: flex;
-   justify-content: center;
    position: fixed;
-   align-items: center;
+   justify-content: center;
    top: 0;
-
+   margin: 0 auto;
    background: rgba(0, 0, 0, 0.6);
    padding: 4rem 0 0;
 
    width: 100%;
    height: 100%;
    z-index: 999;
+   animation: animateModal .5s ease;
+}
+
+@keyframes animateModal {
+   from{
+      opacity: 0.8;
+   }to{
+      opacity: 1;
+   }
 }
 
 .modal-content{
+   position: relative;
    background-color: black;
    width: 50%;
+   height: 75%;
    padding: 3rem 2rem;
    border-radius: 10px;
    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.close-icon{	
+   position: absolute;
+   top: .2rem;
+   right: .2rem;
+   padding: 0.2rem;
+   cursor: pointer;
+}
+
+.close-icon svg{
+   width: 2.5rem;
+   height: 2rem;
+   stroke-width: 2;
 }
 
 .modal-header{
@@ -40,10 +64,10 @@
    align-items: center;
    background: none;
    border-radius: 10px;
-   font-weight : bold;
+   /* font-weight : bold; */
    font-size: 1rem;
    border: 2px solid rgba(255, 255, 255, 0.3);
-
+   opacity: .8;
    padding: 0.4rem 4rem;
    cursor: pointer;
    transition: border-color .3s ease;
@@ -55,4 +79,6 @@
 
 .controllers button:hover{
    border-color: white;
+   opacity: 1;
+
 }

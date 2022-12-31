@@ -76,18 +76,19 @@
 .login-button{
    display: flex;
    align-items: center;
+   border: none;
    gap: 1rem;
    height: 100%;
 }
 
-.signup-button{
+/* .signup-button{
    padding: .3rem .6rem;
    margin: .2rem 0;
    border-radius: 10px;
    border-radius: 4px;
    border: 2px solid rgba(255, 255, 255, 0.3);
    height: 70%;
-}
+} */
 
 .header-controllers{
    display: flex;
@@ -98,12 +99,15 @@
    z-index: 900;
 }
 
-.header-controllers a{
+.header-controllers button{
+   background: none;
+   
    opacity: 0.8;
    transition: opacity 0.5s ease;
+   cursor: pointer;
 }
 
-.header-controllers a:hover{
+.header-controllers button:hover{
    opacity: 1;
 }
 

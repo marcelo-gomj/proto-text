@@ -13,7 +13,7 @@ export function FormSingup() {
    const [ data, setData ] = useState("");
 
    function submitData(data: FormValues){
-      console.log(data)
+      // console.log(data)
    }
 
    // return (

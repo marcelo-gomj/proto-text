@@ -1,7 +1,9 @@
+import Link from 'next/link';
 import feed from './feed.module.css';
 
 interface FeedListProps {
    id: string;
+   post_id: string;
    content: string;
    created_at: string;
    email: string;
@@ -25,10 +27,17 @@ export function FeedList({ list } : FeedListComponentProps) {
                         className={feed["post"]}
                         tabIndex={0}
                      >
-                        <h3
-                           className={feed["post-header"]}
-                        >{item.email}</h3>
-                        <p>{item.content}</p>
+                        <Link href={"/post/" + item?.post_id}>
+                           <h3
+                              className={feed["post-header"]}
+                           >{item.email}</h3>
+                           <p>{item.content}</p>
+
+                           <div className={feed["post-react"]}>
+                              <div>Curtir</div>
+                              <div>Comentar</div>
+                           </div>
+                        </Link>
 
                      </article>
                   )

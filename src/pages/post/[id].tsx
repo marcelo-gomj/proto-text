@@ -15,15 +15,15 @@ export default function PostPage({ post }: PostPageProps ) {
          </Head>
 
          <main>
-            <div>{post.content}</div>
+            <div
+               style={{ width: '50%', margin: '2.5rem auto' }}
+            >{post.content}</div>
          </main>
       </>      
    )
 }
 
 export async function getServerSideProps({ params }: GetServerSidePropsContext){
-   console.log(params?.id);
-
    const { data, error } = await supabase
       .from('posts')
       .select()

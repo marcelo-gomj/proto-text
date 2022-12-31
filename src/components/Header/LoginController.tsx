@@ -25,25 +25,24 @@ export function LoginController() {
    }
 
    function handleModal() {
-      console.log('PASSOU NO HANDLER');
       session?.openModal()
    };
 
    return (
       session && session.user === null ? (
          <div className={header["header-controllers"]}>
-            <div
+            <button
                onClick={handleModal}
                className={header["login-button"]}
             >
                <User />
-               Entrar
-            </div>
+               Entrar ou Cadastrar
+            </button>
 
-            <div
+            {/* <button
                onClick={handleModal}
                className={header["signup-button"]}
-            >Cadastrar</div>
+            >Cadastrar</button> */}
          </div>
       ) :
 

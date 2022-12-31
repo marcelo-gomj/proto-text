@@ -1,8 +1,10 @@
 import { supabase } from '../../services/supabase';
+import Router from 'next/router';
 
-import modal from './modal.module.css';
 import GoogleIcon from '../../assets/Google.svg';
 import GitHubIcon from '../../assets/Github.svg';
+import CloseIcon from '../../assets/Close.svg';
+import modal from './modal.module.css';
 
 interface IModalOptions {
    isOpenModal?: boolean;
@@ -10,9 +12,15 @@ interface IModalOptions {
 }
 
 export function ModalLogin({ isOpenModal, closeModal } : IModalOptions) {
+
    async function setProviderSocial(provider : 'github' | 'google' | 'twitter'){
-      const { data, error } = await supabase.auth.signInWithOAuth({
+      const params = '/?path=' + Router.asPath.replaceAll('/', '-');
+
+      await supabase.auth.signInWithOAuth({
          provider,
+         options: {
+            redirectTo: process.env.NEXT_PUBLIC_URL + '/conta/' + params 
+         }
       })
    }
 
@@ -22,11 +30,16 @@ export function ModalLogin({ isOpenModal, closeModal } : IModalOptions) {
          style={{ display: isOpenModal ? 'flex' :  'none'}}
       >
          <div className={modal["modal-content"]}>
-            <div className={modal["modal-header"]}>
-               <h3>Entrar com:</h3>
+            <div 
+               onClick={() => closeModal(false)}
+               className={modal["close-icon"]}
+            >
+               <CloseIcon />
             </div>
 
-            <h3 onClick={() => closeModal(false)}>CLOSE MODAL</h3>
+            <div className={modal["modal-header"]}>
+               <h3>Entrar ou Cadastrar com:</h3>
+            </div>
 
             <div
                className={modal["content-form"]}
@@ -37,7 +50,7 @@ export function ModalLogin({ isOpenModal, closeModal } : IModalOptions) {
                      onClick={() => setProviderSocial('google')}
                   >
                      <GoogleIcon />
-                     Entar com Google
+                     Acessar com Google
                   </button>
 
                   <button
@@ -45,7 +58,7 @@ export function ModalLogin({ isOpenModal, closeModal } : IModalOptions) {
                      onClick={() => setProviderSocial('github')}
                   >
                      <GitHubIcon />
-                     Entar com Github
+                     Acessar com Github
                   </button>
                   {/* <button
                      className="google-provider"

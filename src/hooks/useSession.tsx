@@ -25,23 +25,43 @@ export function UseSession({ children }: useUserProps) {
 		; (async function () {
 			const { data, error } = await supabase.auth.getSession();
 
-			if (!error) {
+			if (!error && data) {
 				setUser(data.session)
 			}
 		})()
 	}, [])
 
-	supabase.auth.onAuthStateChange((event, session) => {
-		switch (event) {
-			case "USER_DELETED":
-			case "SIGNED_OUT":
-				setUser(null);
-				break;
-			default:
-				setUser(session)
-				break;
+	supabase.auth.onAuthStateChange(async (event, session) => {
+		if (event === "USER_DELETED" || event === "SIGNED_OUT") {
+			setUser(null);
+			const expires = new Date(0).toUTCString();
+			document.cookie = `sb-access-token=; path=/; expires=${expires}; SameSite=Lax; secure`
+			document.cookie = `sb-refresh-token=; path=/; expires=${expires}; SameSite=Lax; secure`
+		}
+
+		if (event === "SIGNED_IN") {
+			if (session) {
+				const { data, error } = await supabase
+					.from("profile")
+					.select()
+					.eq("user_reference", session.user.id)
+					.single()
+
+				if (!data) {
+					await supabase.from('profile').insert({
+						username: 'user_' + session.user.user_metadata.provider_id,
+						user_reference: session.user.id
+					});
+				}
+
+			}
+
+			setUser(session)
+			document.cookie = `sb-access-token=${session?.access_token}; path=/; max-age=${360800}; SameSite=Lax; secure`
+			document.cookie = `sb-refresh-token=${session?.refresh_token}; path=/; max-age=${360800}; SameSite=Lax; secure`
 		}
 	})
+
 
 	function openModal() {
 		setModalLogin(true)
@@ -51,17 +71,15 @@ export function UseSession({ children }: useUserProps) {
 		setModalLogin(false);
 	}
 
-	console.log("DATA: ", modalLogin)
-
 	return (
-			<SessionContext.Provider
-				value={{ user, openModal, closeModal }}
-			>
-				{children}
-				
-				{/* {user === null ? ( */}
-					<ModalLogin isOpenModal={modalLogin} closeModal={setModalLogin}/>
-				{/* ) : null} */}
-			</SessionContext.Provider>
+		<SessionContext.Provider
+			value={{ user, openModal, closeModal }}
+		>
+			{children}
+
+			{/* {user === null ? ( */}
+			<ModalLogin isOpenModal={modalLogin} closeModal={setModalLogin} />
+			{/* ) : null} */}
+		</SessionContext.Provider>
 	)
 }

@@ -44,10 +44,8 @@ export default function AddText() {
 
 
    async function handleDataSubmit(inputValues: PostInputs) {
-      console.log(session)
       if(session){
          if (!session.user) {
-            console.log('PASSOU AQUI');
             session.openModal()
             return;
          }
