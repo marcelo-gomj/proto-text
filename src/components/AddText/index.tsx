@@ -120,12 +120,6 @@ export default function AddText() {
             ) : ''}
             
 
-            { formState.errors.content?.message && !formState.isValid ? (
-            
-               <p>"Post Atigiu o máximo de" + 560 caracteres) + "/ " + formState.errors.content?.ref?.value.length</p>
-            
-            ) : '' }
-            
             { formState.isSubmitSuccessful 
             && !formState.isDirty && 
             formState.isSubmitted && postSended ? (
