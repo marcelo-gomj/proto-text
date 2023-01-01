@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState, useContext } from "react";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { supabase } from "../services/supabase";
 import { useForm, FieldError } from "react-hook-form";
 
@@ -13,10 +13,11 @@ import { debouce } from "../utils/debouceOnChange";
 
 export default function AccountPage() {
    const session = useContext(SessionContext);
+   const router = useRouter();
    const [checkUsername, setCheckUsername] = useState(false);
    const { register, handleSubmit, formState, trigger } = useForm();
 
-   const urlRedirect = Router.query.path ? Router.query.path[0].replaceAll('-', '/') : '/' ;
+   const urlRedirect = router.query.path ? router.query.path[0].replaceAll('-', '/') : '/' ;
 
    useEffect(() => {
       async function hasUsernameRegisted() {
@@ -28,7 +29,7 @@ export default function AccountPage() {
                .single()
 
             if (!hasUsername.data?.default_username) {
-               Router.push(urlRedirect)
+               router.push(urlRedirect)
             } else {
                setCheckUsername(true)
             }
@@ -52,7 +53,7 @@ export default function AccountPage() {
             })
             .eq('user_reference', data.session.user.id)
 
-            Router.push(urlRedirect);
+            router.push(urlRedirect);
       }
 
       

@@ -9,6 +9,7 @@ import { FeedList } from '../components/FeedList';
 interface PostProps {
   email: string;
   id: string;
+  post_id: string;
   created_at: string;
   is_public: boolean;
   content: string;
